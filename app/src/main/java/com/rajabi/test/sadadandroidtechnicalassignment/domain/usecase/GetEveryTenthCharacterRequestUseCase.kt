@@ -1,4 +1,9 @@
 package com.rajabi.test.sadadandroidtechnicalassignment.domain.usecase
 
-class GetEveryTenthCharacterRequestUseCase {
+import com.rajabi.test.sadadandroidtechnicalassignment.domain.repository.MindorksRepository
+
+class GetEveryTenthCharacterRequestUseCase(
+    private val mindorksRepository: MindorksRepository
+) {
+    suspend fun execute(): String? = mindorksRepository.GetEveryTenthCharacter()
 }

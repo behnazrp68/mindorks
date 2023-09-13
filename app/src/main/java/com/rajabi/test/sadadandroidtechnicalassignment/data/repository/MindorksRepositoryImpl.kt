@@ -1,8 +1,11 @@
 package com.rajabi.test.sadadandroidtechnicalassignment.data.repository
 
+import android.text.Html
 import android.util.Log
+import com.rajabi.test.sadadandroidtechnicalassignment.data.model.EMPTY_STRING
 import com.rajabi.test.sadadandroidtechnicalassignment.data.repository.datasource.MindorksRemoteDataSource
 import com.rajabi.test.sadadandroidtechnicalassignment.domain.repository.MindorksRepository
+import org.jsoup.Jsoup
 
 class MindorksRepositoryImpl(
     private val mindorksRemoteDataSource: MindorksRemoteDataSource
@@ -11,9 +14,17 @@ class MindorksRepositoryImpl(
         lateinit var getEveryTenthCharacterContent: String
         try {
             val response = mindorksRemoteDataSource.getEveryTenthCharacter()
-            val body = response.body()
+            val body = Jsoup.parse(response.body()).text()
             if (body != null) {
-                getEveryTenthCharacterContent = body.toString()
+                val strText =body.toCharArray()
+                var result = ""
+                      for (i in strText.indices) {
+                    if (i != 0 && i % 10 == 0) {
+                        result = "$result${strText[i + 1]}, "
+                    }
+                }
+                getEveryTenthCharacterContent ==
+                    " $result"
             }
         } catch (exception: Exception) {
             Log.i("MyTag", exception.message.toString())
@@ -21,16 +32,20 @@ class MindorksRepositoryImpl(
         return getEveryTenthCharacterContent
     }
 
-    override suspend fun GetTenthCharacter(): String? {
+    override suspend fun GetTenthCharacter(): String {
         lateinit var getTenthCharacterContent: String
         try {
+
             val response = mindorksRemoteDataSource.getTenthCharacter()
-            val body = response.body()
+
+            val body = Jsoup.parse(response.body()).text()
             if (body != null) {
-                getTenthCharacterContent = body.toString()
+                getTenthCharacterContent = "${body.toCharArray()[9]}"
+
             }
         } catch (exception: Exception) {
             Log.i("MyTag", exception.message.toString())
+
         }
         return getTenthCharacterContent
     }
@@ -48,4 +63,5 @@ class MindorksRepositoryImpl(
         }
         return getWordCounterContent
     }
+
 }
