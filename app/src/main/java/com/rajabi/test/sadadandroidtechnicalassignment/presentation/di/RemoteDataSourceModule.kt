@@ -18,6 +18,7 @@ class RemoteDataSourceModule() {
     fun providesMovieRemoteDataSource(
         mindorksContentService: MindorksContentService
     ): MindorksRemoteDataSource {
+
         return MindorksRemoteDataSourceImpl(mindorksContentService)
     }
 }

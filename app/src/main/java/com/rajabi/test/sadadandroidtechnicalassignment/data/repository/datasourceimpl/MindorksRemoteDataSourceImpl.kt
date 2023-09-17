@@ -8,7 +8,6 @@ class MindorksRemoteDataSourceImpl(
     private val mindorksContentService: MindorksContentService
 ) : MindorksRemoteDataSource {
     override suspend fun getEveryTenthCharacter(): Response<String> =
-
         mindorksContentService.getMindorksContentForGetEveryTenthCharacter()
 
     override suspend fun getTenthCharacter(): Response<String> =
