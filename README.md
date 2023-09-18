@@ -18,5 +18,5 @@ this is an application contains 3 request SIMULTANEOUSLY
 ## Installation
 Clone this repository and import into **Android Studio**
 ```bash
-git clone git@github.com:wolox/<reponame>.git
+git clone https://github.com/behnazrp68/mindorks.git
 ```
