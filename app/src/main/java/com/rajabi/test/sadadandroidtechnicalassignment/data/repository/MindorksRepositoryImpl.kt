@@ -2,7 +2,6 @@ package com.rajabi.test.sadadandroidtechnicalassignment.data.repository
 
 import android.text.Html
 import android.util.Log
-import com.rajabi.test.sadadandroidtechnicalassignment.data.model.EMPTY_STRING
 import com.rajabi.test.sadadandroidtechnicalassignment.data.repository.datasource.MindorksRemoteDataSource
 import com.rajabi.test.sadadandroidtechnicalassignment.domain.repository.MindorksRepository
 import org.jsoup.Jsoup
@@ -62,11 +61,8 @@ class MindorksRepositoryImpl(
             if (body != null) {
                 getWordCounterContent = body.toString()
                 val wordCount = countFrequency(regex.replace(body, " "))
-                var count = EMPTY_STRING
+                var count = ""
                 wordCount.forEach {
-                    // Loop to iterate over the
-                    // elements of the map
-                    //to make it more readable
                     count = "$count${it.key} = ${it.value}\n"
                 }
                 getWordCounterContent = "\n$count"
