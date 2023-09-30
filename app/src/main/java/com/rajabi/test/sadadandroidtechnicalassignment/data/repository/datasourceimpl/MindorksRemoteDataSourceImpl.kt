@@ -15,6 +15,4 @@ class MindorksRemoteDataSourceImpl(
 
     override suspend fun getWordCounter(): Response<String> =
         mindorksContentService.getMindorksContentForGetWordCounter()
-
-
 }

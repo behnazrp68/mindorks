@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class RemoteDataSourceModule() {
+class RemoteDataSourceModule{
 
     @Singleton
     @Provides

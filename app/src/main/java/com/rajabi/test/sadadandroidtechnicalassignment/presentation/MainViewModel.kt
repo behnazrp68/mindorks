@@ -21,18 +21,17 @@ class MainViewModel(
     lateinit var getTenthCharacterTask: Deferred<LiveData<String>>
     lateinit var getWordCounterTask: Deferred<LiveData<String?>>
 
-    fun getEveryTenthCharacter() = liveData {
-        val EveryTenthCharacterList = getEveryTenthCharacterRequestUseCase.execute()
-        emit(EveryTenthCharacterList)
+    private fun getEveryTenthCharacter() = liveData {
+        val everyTenthCharacterList = getEveryTenthCharacterRequestUseCase.execute()
+        emit(everyTenthCharacterList)
     }
 
-    fun getTenthCharacter() = liveData {
+    private fun getTenthCharacter() = liveData {
         val tenthCharacter = getTenthCharacterRequestUseCase.execute()
         emit(tenthCharacter)
     }
 
-    fun getWordCounter() = liveData {
-
+    private fun getWordCounter() = liveData {
         val wordCounter = getWordCounterRequestUseCase.execute()
         emit(wordCounter)
     }
@@ -43,8 +42,6 @@ class MainViewModel(
                 getEveryTenthCharacterTask = async { getEveryTenthCharacter() }
                 getTenthCharacterTask = async { getTenthCharacter() }
                 getWordCounterTask = async { getWordCounter() }
-
-
             } catch (exception: Exception) {
                 Log.e("TAG", exception.message.toString())
             }

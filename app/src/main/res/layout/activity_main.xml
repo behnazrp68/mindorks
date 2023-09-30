@@ -21,35 +21,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="result10thChar" />
+                android:text="@string/result10thchar" />
 
             <TextView
                 android:id="@+id/result_every_10th_char"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="result10thCharArray" />
-
-            <TextView
-                android:id="@+id/result_every_10th_char_without_space"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="result10thCharArrayWithoutSpace" />
+                android:text="@string/result10thchararray" />
 
             <TextView
                 android:id="@+id/result_word_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="resultWordCount" />
+                android:text="@string/resultwordcount" />
 
             <Button
                 android:id="@+id/fetch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="fetch_content" />
+                android:text="@string/fetch_content" />
 
 
         </LinearLayout>

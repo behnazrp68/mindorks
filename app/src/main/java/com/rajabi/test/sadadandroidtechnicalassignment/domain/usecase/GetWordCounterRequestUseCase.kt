@@ -6,5 +6,5 @@ class GetWordCounterRequestUseCase (
     private val mindorksRepository: MindorksRepository
 
 ) {
-    suspend fun execute(): String? = mindorksRepository.GetWordCounter()
+    suspend fun execute(): String? = mindorksRepository.getWordCounter()
 }

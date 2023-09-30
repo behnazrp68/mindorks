@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SadadAndroidTechnicalAssignment</string>
+    <string name="result10thchar">result10thChar</string>
+    <string name="result10thchararray">result10thCharArray</string>
+    <string name="resultwordcount">resultWordCount</string>
+    <string name="fetch_content">fetch_content</string>
 </resources>

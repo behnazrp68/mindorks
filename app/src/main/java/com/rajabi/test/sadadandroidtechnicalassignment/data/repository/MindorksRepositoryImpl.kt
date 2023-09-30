@@ -1,6 +1,5 @@
 package com.rajabi.test.sadadandroidtechnicalassignment.data.repository
 
-import android.text.Html
 import android.util.Log
 import com.rajabi.test.sadadandroidtechnicalassignment.data.repository.datasource.MindorksRemoteDataSource
 import com.rajabi.test.sadadandroidtechnicalassignment.domain.repository.MindorksRepository
@@ -10,8 +9,8 @@ import java.util.*
 class MindorksRepositoryImpl(
     private val mindorksRemoteDataSource: MindorksRemoteDataSource
 ) : MindorksRepository {
-    val regex = Regex("[^A-Za-z0-9 ]")
-    override suspend fun GetEveryTenthCharacter(): String? {
+    private val regex = Regex("[^A-Za-z0-9 ]")
+    override suspend fun getEveryTenthCharacter(): String {
         lateinit var getEveryTenthCharacterContent: String
         try {
             val response = mindorksRemoteDataSource.getEveryTenthCharacter()
@@ -21,11 +20,11 @@ class MindorksRepositoryImpl(
                 var result = ""
                 for (i in strText.indices) {
                     if (i != 0 && i % 10 == 0) {
-                        result = "$result${strText[i + 1]}, "
+                        result = "$result${strText[i-1]}, "
                     }
                 }
                 getEveryTenthCharacterContent =
-                        " $result"
+                    " $result"
             }
         } catch (exception: Exception) {
             getEveryTenthCharacterContent = ""
@@ -34,7 +33,7 @@ class MindorksRepositoryImpl(
         return getEveryTenthCharacterContent
     }
 
-    override suspend fun GetTenthCharacter(): String {
+    override suspend fun getTenthCharacter(): String {
         lateinit var getTenthCharacterContent: String
         try {
 
@@ -53,33 +52,27 @@ class MindorksRepositoryImpl(
         return getTenthCharacterContent
     }
 
-    override suspend fun GetWordCounter(): String? {
+    override suspend fun getWordCounter(): String {
         lateinit var getWordCounterContent: String
         try {
             val response = mindorksRemoteDataSource.getWordCounter()
-            val body = response.body()
+            val body = Jsoup.parse(response.body()).text()
             if (body != null) {
-                getWordCounterContent = body.toString()
                 val wordCount = countFrequency(regex.replace(body, " "))
                 var count = ""
                 wordCount.forEach {
                     count = "$count${it.key} = ${it.value}\n"
                 }
                 getWordCounterContent = "\n$count"
-
-
             }
         } catch (exception: Exception) {
             getWordCounterContent = ""
             Log.i("MyTag", exception.message.toString())
         }
-
-
-
         return getWordCounterContent
     }
 
-    fun countFrequency(str: String): MutableMap<String, Int> {
+    private fun countFrequency(str: String): MutableMap<String, Int> {
         val map: MutableMap<String, Int> = TreeMap()
 
         // Splitting to find the word

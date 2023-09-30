@@ -2,9 +2,9 @@ package com.rajabi.test.sadadandroidtechnicalassignment.domain.repository
 
 interface MindorksRepository {
 
-    suspend fun GetEveryTenthCharacter():String?
+    suspend fun getEveryTenthCharacter():String?
 
-    suspend fun GetTenthCharacter() :String
+    suspend fun getTenthCharacter() :String
 
-    suspend fun GetWordCounter() :String?
+    suspend fun getWordCounter() :String?
 }

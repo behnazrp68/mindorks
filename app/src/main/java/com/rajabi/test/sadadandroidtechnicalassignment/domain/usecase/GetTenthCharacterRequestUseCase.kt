@@ -6,5 +6,5 @@ class GetTenthCharacterRequestUseCase(
     private val mindorksRepository: MindorksRepository
 
 ) {
-    suspend fun execute(): String = mindorksRepository.GetTenthCharacter()
+    suspend fun execute(): String = mindorksRepository.getTenthCharacter()
 }

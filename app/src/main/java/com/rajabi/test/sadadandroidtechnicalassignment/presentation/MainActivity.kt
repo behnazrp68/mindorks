@@ -23,22 +23,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mainViewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
-
-
         binding.fetch.setOnClickListener {
             mainViewModel.parallelRequest()
             CoroutineScope(Main).launch {
-                mainViewModel.getTenthCharacterTask.await().observe(this@MainActivity
+                mainViewModel.getTenthCharacterTask.await().observe(
+                    this@MainActivity
                 ) {
                     binding.result10thChar.text =
                         binding.result10thChar.text.toString() + " " + it
                 }
-                mainViewModel.getWordCounterTask.await().observe(this@MainActivity
+                mainViewModel.getWordCounterTask.await().observe(
+                    this@MainActivity
                 ) {
                     binding.resultWordCount.text =
                         binding.resultWordCount.text.toString() + " " + it
                 }
-                mainViewModel.getEveryTenthCharacterTask.await().observe(this@MainActivity
+                mainViewModel.getEveryTenthCharacterTask.await().observe(
+                    this@MainActivity
                 ) {
                     binding.resultEvery10thChar.text =
                         binding.resultEvery10thChar.text.toString() + " " + it

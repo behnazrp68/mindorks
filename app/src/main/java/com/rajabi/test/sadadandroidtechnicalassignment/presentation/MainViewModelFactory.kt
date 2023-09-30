@@ -10,10 +10,14 @@ class MainViewModelFactory(
     private val getEveryTenthCharacterRequestUseCase: GetEveryTenthCharacterRequestUseCase,
     private val getTenthCharacterRequestUseCase: GetTenthCharacterRequestUseCase,
     private val getWordCounterRequestUseCase: GetWordCounterRequestUseCase
-):ViewModelProvider.Factory {
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(MainViewModel::class.java))
-            return MainViewModel(getEveryTenthCharacterRequestUseCase, getTenthCharacterRequestUseCase, getWordCounterRequestUseCase) as T
+        if (modelClass.isAssignableFrom(MainViewModel::class.java))
+            return MainViewModel(
+                getEveryTenthCharacterRequestUseCase,
+                getTenthCharacterRequestUseCase,
+                getWordCounterRequestUseCase
+            ) as T
         throw java.lang.IllegalArgumentException("unknown parameter")
     }
 }

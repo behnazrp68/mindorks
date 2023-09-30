@@ -5,5 +5,5 @@ import com.rajabi.test.sadadandroidtechnicalassignment.domain.repository.Mindork
 class GetEveryTenthCharacterRequestUseCase(
     private val mindorksRepository: MindorksRepository
 ) {
-    suspend fun execute(): String? = mindorksRepository.GetEveryTenthCharacter()
+    suspend fun execute(): String? = mindorksRepository.getEveryTenthCharacter()
 }
